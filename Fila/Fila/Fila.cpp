@@ -81,6 +81,7 @@ void insere()
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
+		cout << "Erro ao alocar memoria." << endl;
 		return;
 	}
 
@@ -88,13 +89,39 @@ void insere()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	if (inicio == NULL)
+	{
+		inicio = novo;
+		fim = novo;
+	}
+	else
+	{
+		fim->prox = novo;
+		fim = novo;
+	}
 
+	cout << "Elemento inserido com sucesso!" << endl;
 }
+
 
 void remove()
 {
+	if (inicio == NULL) {
+		cout << "Lista vazia.";
+		return;
+	}
 
+	NO* aux = inicio;
 
+	cout << "Elemento removido: " << aux->valor << endl;
+
+	inicio = inicio->prox;
+	
+	if (inicio == NULL) {
+		fim = NULL;
+	}
+
+	free(aux);
 
 }
 
